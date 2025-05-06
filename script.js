@@ -1,5 +1,11 @@
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
+    // Add home class to body
+    document.body.classList.add('home');
+    
+    // Initialize header change on scroll
+    initHeaderScroll();
+    
     // Initialize slideshow
     initSlideshow();
     
@@ -49,18 +55,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Navigation link scaling effect
+    // Navigation link scaling effect for solid header (transparent header is handled by CSS)
+    const header = document.querySelector('header');
     navLinks.forEach(link => {
         link.addEventListener('mouseenter', function() {
-            this.style.transition = 'all 0.3s';
-            this.style.transform = 'scale(1.1)';
+            if (header.classList.contains('solid')) {
+                this.style.transition = 'all 0.3s';
+                this.style.transform = 'scale(1.1)';
+            }
         });
 
         link.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
+            if (header.classList.contains('solid')) {
+                this.style.transform = 'scale(1)';
+            }
         });
     });
 });
+
+// Function to handle header change on scroll
+function initHeaderScroll() {
+    const header = document.querySelector('header');
+    const scrollThreshold = 100; // pixels to scroll before changing header
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > scrollThreshold) {
+            header.classList.remove('transparent');
+            header.classList.add('solid');
+        } else {
+            header.classList.remove('solid');
+            header.classList.add('transparent');
+        }
+    });
+    
+    // Set initial state
+    if (window.scrollY > scrollThreshold) {
+        header.classList.remove('transparent');
+        header.classList.add('solid');
+    } else {
+        header.classList.remove('solid');
+        header.classList.add('transparent');
+    }
+}
 
 // Function to handle slideshow
 function initSlideshow() {
