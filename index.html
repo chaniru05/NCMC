@@ -10,9 +10,17 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
+
+  <div class="slideshow">
+    <div class="slide active" style="background-image: url('slide1.jpg');"></div>
+    <div class="slide" style="background-image: url('slide2.jpg');"></div>
+    <div class="slide" style="background-image: url('slide3.jpg');"></div>
+</div>
+
+    <header class="transparent">
         <div class="logo">
-            <img src="logo1.png" alt="Math Circle Logo">
+            <img src="logo2.png" alt="Math Circle Logo" class="logo-transparent">
+            <img src="logo1.png" alt="Math Circle Logo Alternate" class="logo-solid">
         </div>
         <nav>
             <ul class="nav-links">
@@ -29,13 +37,6 @@
 
     <main>
         <section class="hero">
-
-          <div class="slideshow">
-            <div class="slide active" style="background-image: url('slide1.jpg');"></div>
-            <div class="slide" style="background-image: url('slide2.jpg');"></div>
-            <div class="slide" style="background-image: url('slide3.jpg');"></div>
-        </div>
-
             <div class="hero-content">
                 <h1>Welcome!</h1>
                 <h2><span style="color: #C0C0C0;">Mathematics Circle</span><br><span class="highlight">Nalanda College</span></h2>
@@ -101,7 +102,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="/api/placeholder/150/60" alt="Math Circle Logo">
+                <img src="logo3.png" alt="Math Circle Logo">
                 <p>Nalanda College Mathematics Circle</p>
             </div>
             <div class="footer-links">
