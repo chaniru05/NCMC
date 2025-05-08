@@ -14,8 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Prevent default behavior for now (will be updated when implementing other pages)
-            e.preventDefault();
+            // Only prevent default for links that don't have actual destinations
+            if (this.getAttribute('href') === '#') {
+                e.preventDefault();
+            }
             
             // Remove active class from all links
             navLinks.forEach(item => item.classList.remove('active'));
@@ -175,4 +177,70 @@ eventCards.forEach(card => {
     card.addEventListener('mouseenter', function() {
         this.style.transition = 'transform 0.3s, box-shadow 0.3s';
     });
+});
+
+
+
+//MEMBER REGISTRATION--------------------------------------------------------------------------------
+
+// Update the register.html script to handle form transitions
+document.addEventListener('DOMContentLoaded', function() {
+    // Original tab switching functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const registrationCategories = document.querySelectorAll('.registration-category');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons and categories
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            registrationCategories.forEach(category => category.classList.remove('active'));
+            
+            // Add active class to clicked button and corresponding category
+            this.classList.add('active');
+            const tabId = this.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+
+    // Registration button hover animation
+    const registerButtons = document.querySelectorAll('.register-button');
+    registerButtons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.transition = 'all 0.3s';
+        });
+        
+        // Add click event to the Member category register button
+        if (button.parentElement.querySelector('h3').textContent === 'Member') {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'member-registration.html';
+            });
+        }
+    });
+
+    // Registration option animation on scroll
+    const options = document.querySelectorAll('.registration-option');
+    
+    if ('IntersectionObserver' in window) {
+        const optionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-feature');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        options.forEach(option => {
+            optionObserver.observe(option);
+        });
+    }
+    
+    // Handle transitions for math symbols on the registration page
+    const mathSymbols = document.querySelectorAll('.math-symbol');
+    if (mathSymbols.length > 0) {
+        mathSymbols.forEach((symbol, index) => {
+            symbol.style.animationDelay = `${index * 1.5}s`;
+        });
+    }
 });
