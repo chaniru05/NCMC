@@ -20,7 +20,7 @@
             background: linear-gradient(rgba(74, 0, 16, 0.8), rgba(74, 0, 16, 0.8)), url('slide1.jpg');
             background-size: cover;
             background-position: center;
-            padding: 1rem;
+            padding: 0 1rem;
         }
 
         .board-hero h1 {
@@ -30,7 +30,7 @@
             margin-bottom: 1rem;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
-        
+
         .board-hero p {
             color: white;
             font-size: 1.2rem;
@@ -39,7 +39,7 @@
             margin: 0 auto;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
-        
+
         .hero-content {
             width: 100%;
             max-width: 1200px;
@@ -452,41 +452,28 @@
                 padding: 0.5rem;
             }
         }
-        
-        /* Mobile Responsive Styles for Board Hero */
-        @media screen and (max-width: 768px) {
-            .board-hero {
-                height: auto;
-                min-height: 30vh;
-                padding: 3rem 1rem;
-            }
 
+        /* Mobile Responsiveness for Board Hero */
+        @media screen and (max-width: 768px) {
             .board-hero h1 {
                 font-size: 2.5rem;
-                margin-bottom: 0.8rem;
             }
-
+            
             .board-hero p {
                 font-size: 1rem;
-                padding: 0 10px;
+                padding: 0 15px;
             }
             
             .board-title {
                 font-size: 1.5rem;
             }
         }
-
+        
         @media screen and (max-width: 480px) {
-            .board-hero {
-                min-height: 25vh;
-                padding: 2.5rem 1rem;
-            }
-
             .board-hero h1 {
                 font-size: 2rem;
-                margin-bottom: 0.5rem;
             }
-
+            
             .board-hero p {
                 font-size: 0.9rem;
                 line-height: 1.4;
