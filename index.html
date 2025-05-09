@@ -48,6 +48,10 @@
     </header>
 
     <main>
+
+        <div class="top-logo">
+            <img src="logo2.png" alt="Math Circle Logo" class="logo-transparent">
+        </div>
         <section class="hero">
             <div class="hero-content">
                 <h1>Welcome!</h1>
@@ -152,10 +156,10 @@
             <ul class="mobile-nav-links">
                 <li><a href="index.html" class="active">HOME</a></li>
                 <li><a href="gallery.html">GALLERY</a></li>
-                <li><a href="board.html">BOARD</a></li>
+                <li><a href="Board.html">BOARD</a></li>
                 <li><a href="tournaments.html">TOURNAMENTS</a></li>
                 <li><a href="pastpapers.html">PAST PAPERS</a></li>
-                <li><a href="Register.html">REGISTER</a></li>
+                <li><a href="register.html">REGISTER</a></li>
                 <li><a href="about.html">ABOUT</a></li>
             </ul>
             <div class="mobile-contact">
@@ -169,4 +173,28 @@
         </div>
     </div>
 </body>
+
+<style>
+    /* Mobile Menu */
+    .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* Media Queries for Mobile Responsiveness */
+        @media screen and (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.5rem;
+            }
+        }
+</style>
 </html>
