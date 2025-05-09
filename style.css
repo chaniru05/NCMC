@@ -618,3 +618,244 @@ footer {
         margin-bottom: 2rem;
     }
 }
+
+
+
+
+
+
+/*-------------------------------------------------------------------------------------*/
+
+
+
+
+/* Mobile Menu Styles */
+.mobile-menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+header.solid .mobile-menu-toggle {
+    color: var(--dark-color);
+}
+
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    display: none;
+    overflow-y: auto;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+}
+
+.mobile-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100%;
+    background-color: var(--dark-color);
+    color: white;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-logo {
+    max-height: 40px;
+}
+
+.close-menu {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.mobile-nav-links li {
+    margin-bottom: 15px;
+}
+
+.mobile-nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: block;
+    padding: 8px 0;
+}
+
+.mobile-nav-links a.active {
+    color: var(--secondary-color);
+}
+
+.mobile-dropdown-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin-left: 15px;
+}
+
+.mobile-dropdown.active .mobile-dropdown-menu {
+    max-height: 300px;
+}
+
+.mobile-dropdown-menu li {
+    margin-bottom: 8px;
+}
+
+.mobile-dropdown-menu a {
+    font-size: 0.9rem;
+    font-weight: normal;
+    padding: 5px 0;
+}
+
+.mobile-contact {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-contact p {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.mobile-contact i {
+    margin-right: 10px;
+    width: 20px;
+}
+
+.hotline {
+    background-color: var(--primary-color);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.hotline p {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.hotline h3 {
+    font-size: 1.3rem;
+    color: white;
+}
+
+/* WhatsApp button */
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: all 0.3s;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Enhanced Mobile Responsive Design */
+@media (max-width: 768px) {
+    header {
+        padding: 0.8rem 5%;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    header nav {
+        display: none;
+    }
+    
+    .logo img {
+        max-height: 40px;
+    }
+    
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+    
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .cta-button {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+    
+    .features {
+        padding: 3rem 1rem;
+    }
+    
+    .feature {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    
+    .events-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .event-card {
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        padding: 0 1rem 2rem;
+    }
+    
+    /* Adjust symbol sizes for mobile */
+    .symbol {
+        font-size: 2rem !important;
+    }
+    
+    #symbol1, #symbol2, #symbol3, #symbol4, #symbol5 {
+        font-size: 2.5rem !important;
+    }
+}

@@ -28,13 +28,19 @@
             <img src="logo2.png" alt="Math Circle Logo" class="logo-transparent">
             <img src="logo1.png" alt="Math Circle Logo Alternate" class="logo-solid">
         </div>
+        
+        <!-- Mobile menu button -->
+        <div class="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Board</a></li>
-                <li><a href="#">Tournaments</a></li>
-                <li><a href="#">Past Papers</a></li>
+                <li><a href="#" class="dropdown-toggle">Gallery</a></li>
+                <li><a href="#" class="dropdown-toggle">Board</a></li>
+                <li><a href="#" class="dropdown-toggle">Tournaments</a></li>
+                <li><a href="#" class="dropdown-toggle">Past Papers</a></li>
                 <li><a href="register.html">Register</a></li>
                 <li><a href="#">About</a></li>
             </ul>
@@ -135,5 +141,65 @@
             <p>&copy; 2025 Nalanda College Mathematics Circle. All rights reserved.</p>
         </div>
     </footer>
+    
+    <!-- WhatsApp floating button -->
+    <a href="https://wa.me/1234567890" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Mobile menu overlay - updated for better mobile experience -->
+    <div class="mobile-menu-overlay">
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <img src="logo1.png" alt="Math Circle Logo" class="mobile-logo">
+                <span class="close-menu"><i class="fas fa-times"></i></span>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html" class="active">HOME</a></li>
+                <li class="mobile-dropdown">
+                    <a href="#" class="mobile-dropdown-toggle">GALLERY <i class="fas fa-chevron-down"></i></a>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="#">Recent Events</a></li>
+                        <li><a href="#">Competition Photos</a></li>
+                        <li><a href="#">Workshops</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-dropdown">
+                    <a href="#" class="mobile-dropdown-toggle">BOARD <i class="fas fa-chevron-down"></i></a>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">History</a></li>
+                        <li><a href="#">Achievements</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-dropdown">
+                    <a href="#" class="mobile-dropdown-toggle">TOURNAMENTS <i class="fas fa-chevron-down"></i></a>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="#">Upcoming</a></li>
+                        <li><a href="#">Past Results</a></li>
+                        <li><a href="#">Rules</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-dropdown">
+                    <a href="#" class="mobile-dropdown-toggle">PAST PAPERS <i class="fas fa-chevron-down"></i></a>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="#">By Year</a></li>
+                        <li><a href="#">By Difficulty</a></li>
+                        <li><a href="#">Solutions</a></li>
+                    </ul>
+                </li>
+                <li><a href="register.html">REGISTER</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+            <div class="mobile-contact">
+                <p><i class="fas fa-envelope"></i> math.circle@nalanda.edu</p>
+                <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                <div class="hotline">
+                    <p>HOTLINE</p>
+                    <h3>+94 123 456 789</h3>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
