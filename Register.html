@@ -21,7 +21,7 @@
             background-size: cover;
             background-position: center;
         }
-
+    
         .registration-hero h1 {
             color: white;
             font-size: 3.5rem;
@@ -29,53 +29,58 @@
             margin-bottom: 1rem;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
-
+    
         .registration-tabs {
             display: flex;
             justify-content: center;
             margin: 2rem 0;
             border-bottom: 2px solid var(--secondary-color);
             padding-bottom: 1rem;
+            flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
+            gap: 10px; /* Add gap between items when they wrap */
         }
-
+    
         .tab-button {
             background-color: white;
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
-            padding: 12px 24px;
-            margin: 0 10px;
+            padding: 10px 20px; /* Slightly smaller padding */
+            margin: 5px; /* Reduced margin */
             border-radius: 30px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all var(--transition-speed);
+            flex: 0 1 auto; /* Allow buttons to shrink if needed */
+            text-align: center;
+            min-width: 150px; /* Minimum width to ensure readability */
         }
-
+    
         .tab-button:hover {
             background-color: var(--light-color);
             transform: translateY(-3px);
         }
-
+    
         .tab-button.active {
             background-color: var(--primary-color);
             color: white;
         }
-
+    
         .registration-content {
             padding: 3rem 2rem;
         }
-
+    
         .registration-category {
             display: none;
             max-width: 1200px;
             margin: 0 auto;
         }
-
+    
         .registration-category.active {
             display: block;
             animation: fade-in 0.7s ease;
         }
-
+    
         .registration-options {
             display: flex;
             justify-content: space-around;
@@ -83,7 +88,7 @@
             gap: 2rem;
             margin-top: 2rem;
         }
-
+    
         .registration-option {
             text-align: center;
             padding: 2rem;
@@ -93,30 +98,30 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
             transition: transform var(--transition-speed);
         }
-
+    
         .registration-option:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
-
+    
         .registration-option i {
             font-size: 3rem;
             color: var(--primary-color);
             margin-bottom: 1.5rem;
             text-shadow: 1px 1px 3px rgba(192, 192, 192, 0.5);
         }
-
+    
         .registration-option h3 {
             margin-bottom: 1rem;
             color: var(--dark-color);
             font-size: 1.5rem;
         }
-
+    
         .registration-option p {
             margin-bottom: 1.5rem;
             color: #7f8c8d;
         }
-
+    
         .register-button {
             padding: 10px 20px;
             background-color: var(--primary-color);
@@ -127,23 +132,23 @@
             cursor: pointer;
             transition: all var(--transition-speed);
         }
-
+    
         .register-button:hover {
             background-color: var(--dark-color);
             transform: translateY(-2px);
         }
-
+    
         .category-header {
             text-align: center;
             margin-bottom: 2rem;
         }
-
+    
         .category-header p {
             max-width: 700px;
             margin: 0 auto;
             color: #666;
         }
-
+    
         /* Mobile Menu */
         .mobile-menu-toggle {
             display: none;
@@ -163,6 +168,40 @@
                 align-items: center;
                 justify-content: center;
                 padding: 0.5rem;
+            }
+        }
+    
+        /* Media Queries for smaller screens */
+        @media screen and (max-width: 768px) {
+            .registration-tabs {
+                flex-direction: column;
+                align-items: center;
+                width: 90%;
+                margin: 2rem auto;
+            }
+            
+            .tab-button {
+                width: 100%;
+                max-width: 300px;
+                margin: 5px 0;
+                padding: 12px 15px;
+            }
+        }
+    
+        /* Extra small screens */
+        @media screen and (max-width: 480px) {
+            .tab-button {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+            
+            .registration-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .registration-hero p {
+                font-size: 0.9rem;
+                padding: 0 15px;
             }
         }
     </style>
