@@ -341,3 +341,15 @@ eventCards.forEach(card => {
         this.style.transition = 'transform 0.3s, box-shadow 0.3s';
     });
 });
+
+
+
+// ------------------------------- Register Now -----------------------------------------------
+
+// Add navigation to member-registration.html for the Member registration button
+const memberRegisterButton = document.querySelector('#member .registration-option:first-child .register-button');
+if (memberRegisterButton) {
+    memberRegisterButton.addEventListener('click', function() {
+        window.location.href = 'member-registration.html';
+    });
+}
