@@ -710,27 +710,6 @@ header.solid .mobile-menu-toggle {
     color: var(--secondary-color);
 }
 
-.mobile-dropdown-menu {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    margin-left: 15px;
-}
-
-.mobile-dropdown.active .mobile-dropdown-menu {
-    max-height: 300px;
-}
-
-.mobile-dropdown-menu li {
-    margin-bottom: 8px;
-}
-
-.mobile-dropdown-menu a {
-    font-size: 0.9rem;
-    font-weight: normal;
-    padding: 5px 0;
-}
-
 .mobile-contact {
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
