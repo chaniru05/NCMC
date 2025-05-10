@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - NCMC</title>
+    <meta name="theme-color" content="#800020">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            height: 60vh;
+            background-image: linear-gradient(rgb(74, 0, 16), rgba(74, 0, 16, 0.836)), url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUpIn 1s forwards 0.3s;
+        }
+
+        .about-subtitle {
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUpIn 1s forwards 0.6s;
+        }
+
+        @keyframes fadeUpIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating math equations animation */
+        .math-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .math-icon {
+            position: absolute;
+            font-family: 'Times New Roman', serif;
+            opacity: 0.2;
+            color: white;
+            animation: float 20s infinite linear;
+        }
+
+        /* Mission & Vision Section */
+        .mission-vision {
+            padding: 6rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            background-color: #f9f9f9;
+        }
+
+        .vision, .mission {
+            width: 45%;
+            min-width: 300px;
+            padding: 2rem;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .vision.visible, .mission.visible {
+            animation: fadeUpIn 1s forwards;
+        }
+
+        .vision:hover, .mission:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .vision h2, .mission h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+        }
+
+        .vision h2 i, .mission h2 i {
+            margin-right: 1rem;
+            font-size: 2.2rem;
+        }
+
+        /* History Timeline */
+        .history {
+            padding: 6rem 2rem;
+            background-color: var(--light-color);
+            text-align: center;
+        }
+
+        .history h2 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary-color);
+        }
+
+        .timeline-item {
+            width: 100%;
+            margin-bottom: 3rem;
+            position: relative;
+            display: flex;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .timeline-item.visible {
+            animation: fadeUpIn 1s forwards;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+        }
+
+        .timeline-date {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+        }
+
+        /* Stats Counter Section */
+        .stats {
+            padding: 6rem 2rem;
+            background: linear-gradient(rgb(70, 1, 18), rgb(128, 0, 32)), url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+
+        .stats h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            width: 250px;
+            margin: 1rem;
+            padding: 2rem;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.096);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-item i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .stat-count {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .contact-info.visible {
+            animation: fadeInFromLeft 1s forwards;
+        }
+
+        @keyframes fadeInFromLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover i {
+            transform: rotate(360deg);
+        }
+
+        .contact-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-color);
+        }
+
+        .map-container {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        .map-container.visible {
+            animation: fadeInFromRight 1s forwards;
+        }
+
+        @keyframes fadeInFromRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .map {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Social Media Links */
+        .social-media {
+            padding: 4rem 2rem;
+            background-color: var(--dark-color);
+            text-align: center;
+        }
+
+        .social-media h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-link {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-link i {
+            font-size: 2rem;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-10px);
+            background-color: white;
+        }
+
+        .social-link:hover i {
+            transform: scale(1.2);
+        }
+
+        .social-link:nth-child(1):hover i {
+            color: #4267B2; /* Facebook */
+        }
+
+        .social-link:nth-child(2):hover i {
+            color: #E1306C; /* Instagram */
+        }
+
+        .social-link:nth-child(3):hover i {
+            color: #FF0000; /* YouTube */
+        }
+
+        .social-link:nth-child(4):hover i {
+            color: #000000; /* TikTok */
+        }
+
+        .social-link:nth-child(5):hover i {
+            color: #0077B5; /* LinkedIn */
+        }
+
+        .social-link:nth-child(6):hover i {
+            color: #25D366; /* WhatsApp */
+        }
+
+        /* Custom cursor styles - REMOVED */
+
+        /* Media Queries for Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 2.5rem;
+            }
+
+            .about-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .vision, .mission {
+                width: 100%;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin-left: 40px;
+            }
+
+            .timeline-date {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+
+        .mobile-menu-toggle {
+    display: none; /* Hide by default (on desktop) */
+    color: white; /* Make the icon white */
+}
+
+/* Show mobile menu toggle only on mobile devices */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block; /* Show on mobile */
+    }
+}
+
+    </style>
+</head>
+<body class="about-page">
+    <!-- Custom cursor elements removed -->
+
+    <header class="transparent">
+        <div class="logo">
+            <img src="logo2.png" alt="Math Circle Logo" class="logo-transparent">
+            <img src="logo1.png" alt="Math Circle Logo Alternate" class="logo-solid">
+        </div>
+        
+        <!-- Mobile menu button -->
+        <div class="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#" class="dropdown-toggle">Gallery</a></li>
+                <li><a href="board.html" class="dropdown-toggle">Board</a></li>
+                <li><a href="#" class="dropdown-toggle">Tournaments</a></li>
+                <li><a href="#" class="dropdown-toggle">Past Papers</a></li>
+                <li><a href="Register.html">Register</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section with Math Background -->
+        <section class="about-hero">
+            <div class="math-bg" id="mathBackground"></div>
+            <div class="hero-content">
+                <h1 class="about-title">About Us</h1>
+                <p class="about-subtitle">Discover the Nalanda College Mathematics Circle</p>
+            </div>
+        </section>
+
+        <!-- Mission & Vision Section -->
+        <section class="mission-vision">
+            <div class="vision">
+                <h2><i class="fas fa-eye"></i>Our Vision</h2>
+                <p>To inspire a deep appreciation for mathematics among students by fostering creativity, critical thinking, and problem-solving skills. We envision a community where mathematical thinking becomes a pathway to innovation and academic excellence.</p>
+            </div>
+            <div class="mission">
+                <h2><i class="fas fa-bullseye"></i>Our Mission</h2>
+                <p>To create an inclusive and engaging environment where students can explore the beauty of mathematics beyond classroom boundaries. Through competitions, workshops, and collaborative learning, we aim to cultivate mathematical talent and help students discover the real-world applications of mathematical concepts.</p>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section class="history">
+            <h2>Our Journey Through Time</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2010</div>
+                    <div class="timeline-content">
+                        <h3>The Beginning</h3>
+                        <p>Nalanda College Mathematics Circle was established with just 15 founding members who shared a passion for mathematics beyond the curriculum.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2013</div>
+                    <div class="timeline-content">
+                        <h3>First National Competition</h3>
+                        <p>Our members participated in their first national mathematics olympiad, bringing home three medals and establishing our presence in the competitive circuit.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2016</div>
+                    <div class="timeline-content">
+                        <h3>Community Outreach</h3>
+                        <p>Launched the "Math for All" initiative, extending mathematical education to neighboring schools and communities through volunteer teaching.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020</div>
+                    <div class="timeline-content">
+                        <h3>Digital Transformation</h3>
+                        <p>Successfully transitioned to virtual meetings and competitions during global challenges, expanding our reach and accessibility.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content">
+                        <h3>Today</h3>
+                        <p>Now a Grade A society with over 1000 members, continuing to innovate and inspire the next generation of mathematical thinkers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <h2>Our Achievements</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-count" data-target="1000">0</div>
+                    <div class="stat-label">Active Members</div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <div class="stat-count" data-target="50">0</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-trophy"></i>
+                    <div class="stat-count" data-target="75">0</div>
+                    <div class="stat-label">Awards Won</div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-star"></i>
+                    <div class="stat-count" data-target="1" data-suffix=" A">0</div>
+                    <div class="stat-label">Grade Society</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:math.circle@nalanda.edu">ncmathematicscircle@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+94123456789">+94 123 456 789</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Mathematics Circle,Nalanda College, Colombo, Sri Lanka</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Fri: 2:30 PM - 5:00 PM</span>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <!-- Placeholder for Google Maps iframe -->
+                     <h4>Location</h4>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7326078929536!2d79.87571150479964!3d6.922534198638354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259004e44624f%3A0x7947e5c2814ec47a!2sNaland%20College%20Mathematics%20Circle!5e0!3m2!1sen!2slk!4v1746875246966!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Links -->
+        <section class="social-media">
+            <h2>Connect With Us</h2>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo3.png" alt="Math Circle Logo">
+                <p>Nalanda College Mathematics Circle</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="Board.html">Board</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> math.circle@nalanda.edu</p>
+                <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Nalanda College Mathematics Circle. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay">
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <img src="logo2.png" alt="Math Circle Logo" class="mobile-logo">
+                <span class="close-menu"><i class="fas fa-times"></i></span>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
+                <li><a href="board.html">BOARD</a></li>
+                <li><a href="tournaments.html">TOURNAMENTS</a></li>
+                <li><a href="pastpapers.html">PAST PAPERS</a></li>
+                <li><a href="Register.html">REGISTER</a></li>
+                <li><a href="about.html" class="active">ABOUT</a></li>
+            </ul>
+            <div class="mobile-contact">
+                <p><i class="fas fa-envelope"></i> math.circle@nalanda.edu</p>
+                <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                <div class="hotline">
+                    <p>HOTLINE</p>
+                    <h3>+94 123 456 789</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Custom cursor initialization removed
+            
+            // Generate math background
+            generateMathBackground();
+            
+            // Initialize scroll animations
+            initScrollAnimations();
+            
+            // Initialize counter animation
+            initCounterAnimation();
+        });
+
+        // Custom cursor function removed
+
+        // Generate mathematical background
+        function generateMathBackground() {
+            const container = document.getElementById('mathBackground');
+            const mathSymbols = ['∫', '∑', 'π', '∞', '√', '∂', 'Δ', '∇', 'λ', 'θ', '∏', '∈', '∀', '∃', 'ω', 'φ', '±', '×'];
+            
+            for (let i = 0; i < 20; i++) {
+                const symbol = document.createElement('div');
+                symbol.classList.add('math-icon');
+                symbol.textContent = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
+                
+                // Random positioning
+                symbol.style.top = Math.random() * 100 + '%';
+                symbol.style.left = Math.random() * 100 + '%';
+                symbol.style.fontSize = (Math.random() * 3 + 1) + 'rem';
+                symbol.style.opacity = (Math.random() * 0.2 + 0.1).toString();
+                symbol.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                symbol.style.animationDelay = (Math.random() * 5) + 's';
+                
+                container.appendChild(symbol);
+            }
+        }
+
+        // Scroll animations
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            // Observe elements
+            document.querySelectorAll('.vision, .mission, .timeline-item, .contact-info, .map-container').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Counter animation
+        function initCounterAnimation() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counters = document.querySelectorAll('.stat-count');
+                        counters.forEach(counter => {
+                            const target = parseInt(counter.getAttribute('data-target'));
+                            const suffix = counter.getAttribute('data-suffix') || '';
+                            let count = 0;
+                            const updateCounter = () => {
+                                const increment = target / 100;
+                                if (count < target) {
+                                    count += increment;
+                                    counter.textContent = Math.floor(count) + suffix;
+                                    setTimeout(updateCounter, 20);
+                                } else {
+                                    counter.textContent = target + suffix;
+                                }
+                            };
+                            counter.style.opacity = 1;
+                            updateCounter();
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(document.querySelector('.stats'));
+        }
+    </script>
+</body>
+</html>
