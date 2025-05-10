@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMC - Board</title>
+    <meta name="theme-color" content="#800020">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* Registration Page Specific Styles */
+        .gallery-hero {
+            height: 40vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(rgba(74, 0, 16, 0.8), rgba(74, 0, 16, 0.8)), url('slide1.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 0 1rem;
+        }
+
+        .gallery-hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-hero p {
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        /*--------------------------------------------------------------------------------*/
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1001;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100%;
+            background-color: var(--dark-color);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            overflow-y: auto;
+            z-index: 1002;
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .mobile-logo {
+            height: 50px;
+        }
+        
+        .close-menu {
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: block;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-links a.active {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-contact {
+            color: white;
+            margin-top: 2rem;
+        }
+        
+        .mobile-contact p {
+            margin-bottom: 1rem;
+        }
+        
+        .hotline {
+            margin-top: 1.5rem;
+        }
+        
+        .hotline p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .hotline h3 {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* Media Queries for Mobile Responsiveness */
+        @media screen and (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.5rem;
+            }
+        }
+
+        /* Mobile Responsiveness for Board Hero */
+        @media screen and (max-width: 768px) {
+            .gallery-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-hero p {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+            
+            .gallery-title {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .gallery-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-hero p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+        }
+
+        .albums-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+        
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .album {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: appear 0.6s forwards;
+        }
+        
+        .album:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(128, 0, 32, 0.2);
+        }
+        
+        .album-cover {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .album-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(128, 0, 32, 0.8) 100%);
+        }
+        
+        .album-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .album-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+            font-size: 1.3rem;
+        }
+        
+        .album-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .album-count {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .photos-container {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding: 0 1rem;
+            display: none;
+        }
+        
+        .album-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .album-title h2 {
+            margin: 0;
+            color: var(--dark-color);
+        }
+        
+        .back-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-btn:hover {
+            background-color: var(--dark-color);
+            transform: scale(1.1);
+        }
+        
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .photo-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            aspect-ratio: 1;
+            cursor: pointer;
+            transform: scale(0.9);
+            opacity: 0;
+            animation: photo-appear 0.4s forwards;
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover .photo-overlay {
+            transform: translateY(0);
+        }
+        
+        .photo-caption {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border: 5px solid white;
+            border-radius: 5px;
+        }
+        
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+            color: var(--secondary-color);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+        }
+        
+        .lightbox-nav button {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-nav button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        /* Animations */
+        @keyframes focus-in {
+            0% {
+                filter: blur(12px);
+                opacity: 0;
+            }
+            100% {
+                filter: blur(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slide-up {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes float-element {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.2;
+            }
+            50% {
+                transform: translateY(-15px) rotate(180deg);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+        
+        @keyframes appear {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes photo-appear {
+            0% {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .albums-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .photos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .math-element {
+                font-size: 1.5rem;
+            }
+            
+            .photo-overlay {
+                padding: 0.5rem;
+            }
+            
+            .photo-caption {
+                font-size: 0.8rem;
+            }
+            
+            .lightbox-nav button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <header class="transparent">
+        <div class="logo">
+            <img src="logo2.png" alt="Math Circle Logo" class="logo-transparent">
+            <img src="logo1.png" alt="Math Circle Logo Alternate" class="logo-solid">
+        </div>
+
+         <!-- Mobile menu button -->
+         <div class="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html"  class="active">Gallery</a></li>
+                <li><a href="board.html">Board</a></li>
+                <li><a href="#">Tournaments</a></li>
+                <li><a href="#">Past Papers</a></li>
+                <li><a href="Register.html">Register</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="gallery-hero">
+        <div class="hero-content">
+            <h1>Gallery</h1>
+            <p>Here is the Top category members of the Nalanda colloge mathematics circle</p>
+        </div>
+    </section>
+
+    <div class="albums-container">
+        <div class="albums-grid">
+    <div class="album" data-album="MathLab24">
+        <div class="album-cover" style="background-image: url('images/mathlab24/cover.jpg');">
+            <span class="album-count">12</span>
+        </div>
+        <div class="album-info">
+            <h3>MathLab '24</h3>
+            <p>Hands-on activities and experiments exploring mathematical concepts</p>
+        </div>
+    </div>
+    <div class="album" data-album="Mathemasophia24">
+        <div class="album-cover" style="background-image: url('images/mathemasophia24/cover.jpg');">
+            <span class="album-count">15</span>
+        </div>
+        <div class="album-info">
+            <h3>Mathemasophia '24</h3>
+            <p>Annual mathematics festival celebrating the wisdom of numbers</p>
+        </div>
+    </div>
+    <div class="album" data-album="EnigmaGrandFinale24">
+        <div class="album-cover" style="background-image: url('images/enigma-finale24/cover.jpg');">
+            <span class="album-count">20</span>
+        </div>
+        <div class="album-info">
+            <h3>Enigma '24 Grand Finale</h3>
+            <p>Final round of our prestigious mathematics competition</p>
+        </div>
+    </div>
+    <div class="album" data-album="EnigmaSemiFinals24">
+        <div class="album-cover" style="background-image: url('images/enigma-semifinal24/cover.jpg');">
+            <span class="album-count">18</span>
+        </div>
+        <div class="album-info">
+            <h3>Enigma '24 Semi Finals</h3>
+            <p>Brilliant minds competing in our semi-final rounds</p>
+        </div>
+    </div>
+    <div class="album" data-album="HemamaliMathWorkshop">
+        <div class="album-cover" style="background-image: url('Gallery/Hemamali-math-workshop/photo10.jpg');">
+            <span class="album-count">71</span>
+        </div>
+        <div class="album-info">
+            <h3>Hemamali Math Workshop</h3>
+            <p>Special workshop sessions focused on advanced mathematical techniques</p>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <div class="photos-container">
+        <div class="album-title">
+            <button class="back-btn"><i class="fas fa-arrow-left"></i></button>
+            <h2>Album Title</h2>
+        </div>
+        <div class="photos-grid">
+            <!-- Photos will be loaded here dynamically -->
+        </div>
+    </div>
+
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="Full size image">
+            <div class="lightbox-caption"></div>
+        </div>
+        <div class="lightbox-close"><i class="fas fa-times"></i></div>
+        <div class="lightbox-nav">
+            <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo3.png" alt="Math Circle Logo">
+                <p>Nalanda College Mathematics Circle</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Board</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> math.circle@nalanda.edu</p>
+                <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Nalanda College Mathematics Circle. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- Mobile menu overlay - updated for better mobile experience -->
+    <div class="mobile-menu-overlay">
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <img src="logo2.png" alt="Math Circle Logo" class="mobile-logo">
+                <span class="close-menu"><i class="fas fa-times"></i></span>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="gallery.html"  class="active">GALLERY</a></li>
+                <li><a href="board.html">BOARD</a></li>
+                <li><a href="tournaments.html">TOURNAMENTS</a></li>
+                <li><a href="pastpapers.html">PAST PAPERS</a></li>
+                <li><a href="Register.html">REGISTER</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+            <div class="mobile-contact">
+                <p><i class="fas fa-envelope"></i> math.circle@nalanda.edu</p>
+                <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                <div class="hotline">
+                    <p>HOTLINE</p>
+                    <h3>+94 123 456 789</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize animations and scroll effects
+            initScrollAnimations();
+            
+            // Setup album click events
+            setupAlbumEvents();
+            
+            // Initialize mobile menu
+            initMobileMenu();
+            
+            // Setup lightbox functionality
+            setupLightbox();
+        });
+        
+        // Animate albums as they scroll into view
+        function initScrollAnimations() {
+            const albums = document.querySelectorAll('.album');
+            
+            // Apply animation delay to create a cascade effect
+            albums.forEach((album, index) => {
+                album.style.animationDelay = `${index * 0.1}s`;
+            });
+            
+            // Animate math elements
+            const mathElements = document.querySelectorAll('.math-element');
+            mathElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.5}s`;
+                element.style.animationDuration = `${15 + index * 2}s`;
+            });
+        }
+        
+        // Setup album click events
+        function setupAlbumEvents() {
+            const albums = document.querySelectorAll('.album');
+            const albumsContainer = document.querySelector('.albums-container');
+            const photosContainer = document.querySelector('.photos-container');
+            const albumTitle = document.querySelector('.album-title h2');
+            const backBtn = document.querySelector('.back-btn');
+            const photosGrid = document.querySelector('.photos-grid');
+            
+            // Album click event
+            albums.forEach(album => {
+                album.addEventListener('click', function() {
+                    const albumName = this.getAttribute('data-album');
+                    albumTitle.textContent = this.querySelector('h3').textContent;
+                    
+                    // Hide albums, show photos
+                    albumsContainer.style.display = 'none';
+                    photosContainer.style.display = 'block';
+                    
+                    // Scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Load photos
+                    loadPhotos(albumName);
+                });
+            });
+            
+            // Back button click event
+            backBtn.addEventListener('click', function() {
+                // Hide photos, show albums
+                photosContainer.style.display = 'none';
+                albumsContainer.style.display = 'block';
+                
+                // Clear photos grid
+                photosGrid.innerHTML = '';
+            });
+        }
+        
+        // Load photos from album
+function loadPhotos(albumName) {
+    const photosGrid = document.querySelector('.photos-grid');
+    photosGrid.innerHTML = '';
+    
+    // Define the base path for each album's photos
+    const albumPaths = {
+        'MathLab24': 'images/mathlab24/',
+        'Mathemasophia24': 'images/mathemasophia24/',
+        'EnigmaGrandFinale24': 'images/enigma-finale24/',
+        'EnigmaSemiFinals24': 'images/enigma-semifinal24/',
+        'HemamaliMathWorkshop': 'Gallery/Hemamali-math-workshop/'
+    };
+    
+    // Define the number of photos in each album
+    const albums = {
+        'MathLab24': 12,
+        'Mathemasophia24': 15,
+        'EnigmaGrandFinale24': 20,
+        'EnigmaSemiFinals24': 18,
+        'HemamaliMathWorkshop': 71
+    };
+    
+    const photoCount = albums[albumName] || 12; // Default to 12 if not found
+    const basePath = albumPaths[albumName] || 'images/default/';
+    
+    // Generate photos
+    for (let i = 1; i <= photoCount; i++) {
+        const photoItem = document.createElement('div');
+        photoItem.className = 'photo-item';
+        photoItem.style.animationDelay = `${i * 0.05}s`;
+        
+        const img = document.createElement('img');
+        // Use the format: album-folder/photo1.jpg, photo2.jpg, etc.
+        img.src = `${basePath}photo${i}.jpg`;
+        img.alt = `${albumName} Photo ${i}`;
+        img.setAttribute('data-caption', `${albumName} - Photo ${i}`);
+        
+        // Optional: Add fallback for missing images
+        img.onerror = function() {
+            this.src = '/images/photo-placeholder.jpg';
+        };
+        
+        const overlay = document.createElement('div');
+        overlay.className = 'photo-overlay';
+        
+        const caption = document.createElement('p');
+        caption.className = 'photo-caption';
+        caption.textContent = `${albumName} - Photo ${i}`;
+        
+        overlay.appendChild(caption);
+        photoItem.appendChild(img);
+        photoItem.appendChild(overlay);
+        photosGrid.appendChild(photoItem);
+    }
+    
+    // Add click event to photos
+    const photos = document.querySelectorAll('.photo-item');
+    photos.forEach((photo, index) => {
+        photo.addEventListener('click', function() {
+            openLightbox(index);
+        });
+    });
+}
+        
+        // Setup lightbox functionality
+        function setupLightbox() {
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+            const closeBtn = lightbox.querySelector('.lightbox-close');
+            const prevBtn = lightbox.querySelector('.prev-btn');
+            const nextBtn = lightbox.querySelector('.next-btn');
+            
+            let currentIndex = 0;
+            
+            // Close lightbox
+            closeBtn.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+            });
+            
+            // Close on background click
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
+            
+            // Previous image
+            prevBtn.addEventListener('click', function() {
+                const photos = document.querySelectorAll('.photo-item img');
+                currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+                updateLightboxImage(photos[currentIndex]);
+            });
+            
+            // Next image
+            nextBtn.addEventListener('click', function() {
+                const photos = document.querySelectorAll('.photo-item img');
+                currentIndex = (currentIndex + 1) % photos.length;
+                updateLightboxImage(photos[currentIndex]);
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                } else if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                } else if (e.key === 'ArrowRight') {
+                    nextBtn.click();
+                }
+            });
+        }
+        
+        // Open lightbox with specific image
+        function openLightbox(index) {
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+            const photos = document.querySelectorAll('.photo-item img');
+            
+            currentIndex = index;
+            updateLightboxImage(photos[currentIndex]);
+            lightbox.classList.add('active');
+        }
+        
+        // Update lightbox image and caption
+        function updateLightboxImage(imgElement) {
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+            
+            lightboxImg.src = imgElement.src;
+            lightboxCaption.textContent = imgElement.getAttribute('data-caption');
+        }
+    </script>
+</body>
+</html>
