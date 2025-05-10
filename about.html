@@ -422,13 +422,16 @@
 
         /* Mobile menu styles */
         .mobile-menu-toggle {
-            display: none; /* Hide by default on desktop */
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: white; /* White color for the menu icon */
-            z-index: 100;
-            position: relative;
-        }
+    display: none; /* Hide by default on desktop */
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: white; /* White color for the menu icon */
+    z-index: 100;
+    position: absolute;
+    left: 1rem;
+    top: 40%;
+    transform: translateY(-50%);
+}
         
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
@@ -550,7 +553,7 @@
         
         .mobile-nav-links li {
             margin: 1.5rem 0;
-            text-align: center;
+            text-align:left;
         }
         
         .mobile-nav-links a {
