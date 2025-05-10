@@ -420,9 +420,17 @@
             color: #25D366; /* WhatsApp */
         }
 
-        /* Custom cursor styles - REMOVED */
-
-        /* Media Queries for Mobile Responsiveness */
+        /* Mobile menu styles */
+        .mobile-menu-toggle {
+            display: none; /* Hide by default on desktop */
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white; /* White color for the menu icon */
+            z-index: 100;
+            position: relative;
+        }
+        
+        /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             .about-title {
                 font-size: 2.5rem;
@@ -434,6 +442,7 @@
 
             .vision, .mission {
                 width: 100%;
+                min-width: 0;
             }
 
             .timeline::before {
@@ -445,7 +454,7 @@
             }
 
             .timeline-content {
-                width: 100%;
+                width: calc(100% - 40px);
                 margin-left: 40px;
             }
 
@@ -462,32 +471,135 @@
             .contact-container {
                 flex-direction: column;
             }
+            
+            /* Show mobile menu toggle on mobile */
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            /* Hide desktop navigation on mobile */
+            nav .nav-links {
+                display: none;
+            }
+            
+            /* Header adjustments for mobile */
+            header {
+                padding: 1rem;
+                justify-content: space-between;
+            }
+            
+            /* Logo size adjustments for mobile */
+            .logo img {
+                max-height: 40px;
+            }
+            
+            /* Make map responsive */
+            .map-container iframe {
+                width: 100%;
+                height: 100%;
+            }
+            
+            /* Adjust stats items for mobile */
+            .stat-item {
+                width: 100%;
+                max-width: 250px;
+                margin: 0.5rem auto;
+            }
         }
-
-        .mobile-menu-toggle {
-    display: none; /* Hide by default (on desktop) */
-    color: white; /* Make the icon white */
-}
-
-/* Show mobile menu toggle only on mobile devices */
-@media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: block; /* Show on mobile */
-    }
-}
-
+        
+        /* Mobile menu overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            overflow-y: auto;
+        }
+        
+        .mobile-menu {
+            padding: 2rem;
+            color: white;
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .mobile-logo {
+            height: 40px;
+        }
+        
+        .close-menu {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+        
+        .mobile-nav-links li {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .mobile-nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: color 0.3s;
+            display: block;
+            padding: 0.5rem 0;
+        }
+        
+        .mobile-nav-links a:hover,
+        .mobile-nav-links a.active {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-contact {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .mobile-contact p {
+            margin: 0.5rem 0;
+        }
+        
+        .hotline {
+            margin-top: 1.5rem;
+        }
+        
+        .hotline p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .hotline h3 {
+            margin: 0.5rem 0 0;
+            color: var(--secondary-color);
+        }
     </style>
 </head>
 <body class="about-page">
-    <!-- Custom cursor elements removed -->
-
     <header class="transparent">
         <div class="logo">
             <img src="logo2.png" alt="Math Circle Logo" class="logo-transparent">
             <img src="logo1.png" alt="Math Circle Logo Alternate" class="logo-solid">
         </div>
         
-        <!-- Mobile menu button -->
+        <!-- Mobile menu button - now visible only on mobile and white color -->
         <div class="mobile-menu-toggle">
             <i class="fas fa-bars"></i>
         </div>
@@ -620,7 +732,7 @@
                 </div>
                 <div class="map-container">
                     <!-- Placeholder for Google Maps iframe -->
-                     <h4>Location</h4>
+                    <h4>Location</h4>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7326078929536!2d79.87571150479964!3d6.922534198638354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259004e44624f%3A0x7947e5c2814ec47a!2sNaland%20College%20Mathematics%20Circle!5e0!3m2!1sen!2slk!4v1746875246966!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
