@@ -9,340 +9,411 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <script src="script.js" defer></script>
     <style>
-        /* Registration Form Specific Styles */
+    /* Registration Form Specific Styles */
         
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            animation: fadeIn 0.3s;
-        }
-        
-        .modal-content {
-            background-color: #fff;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            animation: slideIn 0.4s;
-        }
-        
-        .close-modal {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            font-size: 28px;
-            font-weight: bold;
-            color: #666;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        
-        .close-modal:hover {
-            color: var(--primary-color);
-        }
-        
-        .modal-content h3 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-        
-        .success-content {
-            text-align: center;
-            max-width: 600px;
-        }
-        
-        .success-icon {
-            font-size: 5rem;
-            color: #28a745;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
-        
-        .membership-id {
-            margin: 30px 0;
-        }
-        
-        .id-box {
-            background-color: #f8f9fa;
-            border: 2px solid var(--primary-color);
-            padding: 15px;
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            border-radius: 8px;
-            display: inline-block;
-            font-family: monospace;
-            letter-spacing: 2px;
-            margin-top: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .account-info {
-            margin-top: 20px;
-        }
-        
-        .account-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .action-btn {
-            padding: 12px 25px;
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .action-btn:hover {
-            background-color: var(--dark-color);
-            transform: translateY(-3px);
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        .registration-hero {
-            height: 30vh;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            background: linear-gradient(rgba(74, 0, 16, 0.8), rgba(74, 0, 16, 0.8)), url('slide1.jpg');
-            background-size: cover;
-            background-position: center;
-        }
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s;
+}
 
-        .registration-hero h1 {
-            color: white;
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-        }
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: slideIn 0.4s;
+}
 
-        .form-container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
-        }
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+}
 
-        .form-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--secondary-color);
-        }
+.close-modal:hover {
+    color: var(--primary-color);
+}
 
-        .form-header h2 {
-            color: var(--primary-color);
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
+.modal-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--secondary-color);
+}
 
-        .form-header p {
-            color: #666;
-            font-size: 1rem;
-        }
+.success-content {
+    text-align: center;
+    max-width: 600px;
+}
 
-        .form-section {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            border-left: 5px solid var(--primary-color);
-        }
+.success-icon {
+    font-size: 5rem;
+    color: #28a745;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
 
-        .form-section h3 {
-            color: var(--dark-color);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            font-size: 1.4rem;
-        }
+.membership-id {
+    margin: 30px 0;
+}
 
-        .form-section h3 i {
-            margin-right: 10px;
-            color: var(--primary-color);
-        }
+.id-box {
+    background-color: #f8f9fa;
+    border: 2px solid var(--primary-color);
+    padding: 15px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    border-radius: 8px;
+    display: inline-block;
+    font-family: monospace;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+.account-info {
+    margin-top: 20px;
+}
 
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 1rem;
-        }
+.account-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
 
-        .form-col {
-            flex: 1;
-            min-width: 250px;
-        }
+.action-btn {
+    padding: 12px 25px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #444;
-        }
+.action-btn:hover {
+    background-color: var(--dark-color);
+    transform: translateY(-3px);
+}
 
-        .required::after {
-            content: " *";
-            color: var(--primary-color);
-        }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
-        input, select, textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color var(--transition-speed);
-        }
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
 
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
-        }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+.registration-hero {
+    height: 30vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(rgba(74, 0, 16, 0.8), rgba(74, 0, 16, 0.8)), url('slide1.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 0 20px; /* Add padding for mobile */
+    text-align: center; /* Ensure text is centered */
+}
 
-        .submit-container {
-            text-align: center;
-            margin-top: 2rem;
-        }
+.registration-hero .hero-content {
+    width: 100%; /* Full width container */
+    max-width: 800px; /* Maximum width */
+}
 
-        .submit-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 14px 30px;
-            font-size: 1.1rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all var(--transition-speed);
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(128, 0, 32, 0.3);
-        }
+.registration-hero h1 {
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    word-wrap: break-word; /* Allow text to wrap */
+}
 
-        .submit-btn:hover {
-            background-color: var(--dark-color);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(128, 0, 32, 0.4);
-        }
+.registration-hero p {
+    color: white;
+    font-size: 1.2rem;
+    max-width: 100%; /* Full width on small screens */
+    margin: 0 auto;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
 
-        .submit-btn:active {
-            transform: translateY(1px);
-        }
+.form-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+}
 
-        .math-symbol {
-            position: absolute;
-            opacity: 0.05;
-            z-index: -1;
-            font-size: 12rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--secondary-color);
+}
 
-        .symbol-1 {
-            top: 10%;
-            left: 5%;
-        }
+.form-header h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
 
-        .symbol-2 {
-            bottom: 15%;
-            right: 8%;
-        }
+.form-header p {
+    color: #666;
+    font-size: 1rem;
+}
 
-        .symbol-3 {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+.form-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-color);
+}
 
-        /* Form validation styling */
-        input:invalid, select:invalid {
-            border-color: #ff3860;
-        }
+.form-section h3 {
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+}
 
-        .error-message {
-            color: #ff3860;
-            font-size: 0.85rem;
-            margin-top: 5px;
-            display: none;
-        }
+.form-section h3 i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
 
-        input:invalid + .error-message {
-            display: block;
-        }
+.form-group {
+    margin-bottom: 1.5rem;
+}
 
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 1rem;
+}
 
-        .floating-symbol {
-            animation: float 15s ease-in-out infinite;
-        }
+.form-col {
+    flex: 1;
+    min-width: 250px;
+}
 
-        @media (max-width: 768px) {
-            .form-container {
-                padding: 1.5rem;
-                margin: 1rem;
-            }
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #444;
+}
 
-            .form-section {
-                padding: 1rem;
-            }
+.required::after {
+    content: " *";
+    color: var(--primary-color);
+}
 
-            .form-row {
-                flex-direction: column;
-                gap: 10px;
-            }
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color var(--transition-speed);
+}
 
-            .math-symbol {
-                font-size: 8rem;
-            }
-        }
-    </style>
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+}
+
+.submit-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(128, 0, 32, 0.3);
+}
+
+.submit-btn:hover {
+    background-color: var(--dark-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(128, 0, 32, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(1px);
+}
+
+.math-symbol {
+    position: absolute;
+    opacity: 0.05;
+    z-index: -1;
+    font-size: 12rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.symbol-1 {
+    top: 10%;
+    left: 5%;
+}
+
+.symbol-2 {
+    bottom: 15%;
+    right: 8%;
+}
+
+.symbol-3 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Form validation styling */
+input:invalid, select:invalid {
+    border-color: #ff3860;
+}
+
+.error-message {
+    color: #ff3860;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none;
+}
+
+input:invalid + .error-message {
+    display: block;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.floating-symbol {
+    animation: float 15s ease-in-out infinite;
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 768px) {
+    .registration-hero h1 {
+        font-size: 2.2rem; /* Smaller font size on mobile */
+        padding: 0 10px; /* Add padding on sides */
+        line-height: 1.2; /* Better line height for readability */
+    }
+    
+    .registration-hero p {
+        font-size: 1rem; /* Smaller subtitle */
+        padding: 0 15px; /* Add padding on sides */
+    }
+    
+    .form-container {
+        padding: 1.5rem;
+        margin: 1rem;
+        border-radius: 10px; /* Slightly less rounded corners on mobile */
+    }
+
+    .form-section {
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .form-col {
+        min-width: 100%; /* Full width on mobile */
+    }
+
+    .math-symbol {
+        font-size: 8rem;
+    }
+    
+    .account-buttons {
+        flex-direction: column; /* Stack buttons on small screens */
+        gap: 10px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+        margin: 10% auto;
+    }
+    
+    .id-box {
+        font-size: 1.4rem;
+        padding: 10px;
+    }
+}
+
+/* For very small devices */
+@media (max-width: 480px) {
+    .registration-hero h1 {
+        font-size: 1.8rem; /* Even smaller font size on very small devices */
+    }
+    
+    .form-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .form-section h3 {
+        font-size: 1.2rem;
+    }
+    
+    .submit-btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+        width: 100%; /* Full width button on very small screens */
+    }
+}
+</style>
 </head>
 <body>
     <header class="transparent">
