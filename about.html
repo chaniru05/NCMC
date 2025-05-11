@@ -576,6 +576,242 @@
                 transform: scale(0.95);
             }
         }
+
+
+/* Developer Section Styles */
+.developer-section {
+    padding: 4rem 2rem;
+    background-color: #f8f8f8;
+    text-align: center;
+    overflow: hidden; /* For animation containment */
+}
+
+.developer-section h2 {
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: var(--accent-color);
+    transition: width 1s ease;
+}
+
+.section-title.animate::after {
+    width: 80%;
+}
+
+.developer-section .profile-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 400px;
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0; /* Start invisible for animation */
+}
+
+.developer-section .profile-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.profile-img {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.profile-card:hover .profile-img img {
+    transform: scale(1.05);
+}
+
+.profile-details {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.profile-details h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.position {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.position i {
+    margin-right: 0.5rem;
+}
+
+.contact-detail {
+    margin-top: 1rem;
+}
+
+.contact-detail a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.contact-detail a i {
+    margin-right: 0.5rem;
+    color: var(--accent-color);
+}
+
+.contact-detail a:hover {
+    color: var(--accent-color);
+}
+
+/* Sponsor Section Styles */
+.sponsor-section {
+    padding: 4rem 2rem;
+    background-color: #f0f0f0;
+    text-align: center;
+    overflow: hidden; /* For animation containment */
+}
+
+.sponsor-section h2 {
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+}
+
+.sponsor-section .sponsor-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 500px;
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0; /* Start invisible for animation */
+}
+
+.sponsor-section .sponsor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.sponsor-img {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.sponsor-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.sponsor-card:hover .sponsor-img img {
+    transform: scale(1.05);
+}
+
+.sponsor-details {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.sponsor-details h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.founding-year {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.founding-year i {
+    margin-right: 0.5rem;
+}
+
+/* Animation Styles */
+/* Slide in from left animation for Developer section */
+.slide-in-left {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.slide-in-left.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Fade in up animation for Sponsor section */
+.fade-in-up {
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.fade-in-up.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .developer-section, .sponsor-section {
+        padding: 3rem 1rem;
+    }
+    
+    .developer-section h2, .sponsor-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .profile-img {
+        height: 250px;
+    }
+    
+    .sponsor-img {
+        height: 200px;
+    }
+    
+    .profile-details, .sponsor-details {
+        padding: 1.2rem;
+    }
+}
         
         /* Mobile menu overlay */
         .mobile-menu-overlay {
@@ -808,6 +1044,39 @@
             </div>
         </section>
 
+<!-- Developer Section -->
+<section class="developer-section">
+    <h2 class="section-title">Designed & Developed By</h2>
+    <div class="profile-card slide-in-left">
+        <div class="profile-img">
+            <img src="PP1.jpg" alt="P.D.Chaniru Senarathne">
+        </div>
+        <div class="profile-details">
+            <h3>P.D.Chaniru Senarathne</h3>
+            <p class="position"><i class="fas fa-user-tie"></i> Former Secretary</p>
+            <div class="contact-detail">
+                <a href="tel:0712623216"><i class="fas fa-phone-alt"></i> 0712623216</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sponsor Section -->
+<section class="sponsor-section">
+    <h2 class="section-title">Sponsored By</h2>
+    <div class="sponsor-card fade-in-up">
+        <div class="sponsor-img">
+            <img src="PP2.jpg" alt="Founding Board of Mathematics Circle">
+        </div>
+        <div class="sponsor-details">
+            <h3>Founding Board of Mathematics Circle</h3>
+            <div class="founding-year">
+                <i class="fas fa-calendar-alt"></i> Est. 2010
+            </div>
+        </div>
+    </div>
+</section>
+
         <!-- Social Media Links -->
         <section class="social-media">
             <h2>Connect With Us</h2>
@@ -1033,6 +1302,59 @@
                 });
             }
         }
+
+        // Add this to your existing script section or create a new one
+function initSectionAnimations() {
+    // Set up intersection observer for developer and sponsor sections
+    const sectionsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add animation classes based on which section is being observed
+                if (entry.target.classList.contains('developer-section')) {
+                    const card = entry.target.querySelector('.slide-in-left');
+                    const title = entry.target.querySelector('.section-title');
+                    
+                    // Animate title
+                    title.classList.add('animate');
+                    
+                    // Delay the card animation slightly
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, 400);
+                }
+                
+                if (entry.target.classList.contains('sponsor-section')) {
+                    const card = entry.target.querySelector('.fade-in-up');
+                    const title = entry.target.querySelector('.section-title');
+                    
+                    // Animate title
+                    title.classList.add('animate');
+                    
+                    // Delay the card animation slightly
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, 400);
+                }
+                
+                // Once animated, no need to observe anymore
+                sectionsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 }); // Trigger when 20% of the element is visible
+    
+    // Observe the sections
+    document.querySelectorAll('.developer-section, .sponsor-section').forEach(section => {
+        sectionsObserver.observe(section);
+    });
+}
+
+// Add this function call to your document ready function
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing code ...
+    
+    // Initialize the new section animations
+    initSectionAnimations();
+});
     </script>
 </body>
 </html>
